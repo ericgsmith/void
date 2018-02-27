@@ -2,10 +2,20 @@
 
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
-
 use Ericgsmith\Void\Command\YellCommand;
 use Symfony\Component\Console\Application;
+
+$autoloaders = [
+    __DIR__ . '/../../../autoload.php',
+    __DIR__ . '/../vendor/autoload.php'
+];
+
+foreach ($autoloaders as $file) {
+    if (file_exists($file)) {
+        include_once $file;
+        break;
+    }
+}
 
 $application = new Application('Yell into the Void');
 
